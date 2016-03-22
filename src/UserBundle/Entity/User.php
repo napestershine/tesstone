@@ -1,7 +1,12 @@
 <?php
-// src/AppBundle/Entity/User.php
+/**
+ * Created by PhpStorm.
+ * User: Shinedoss.com
+ * Date: 3/22/2016
+ * Time: 7:36 PM
+ */
 
-namespace WebBundle\Entity;
+namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;

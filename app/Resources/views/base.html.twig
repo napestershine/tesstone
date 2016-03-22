@@ -52,16 +52,27 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <button id='launcherLogin' data-toggle="modal" data-target="#login-modal">
-                        Login
-                    </button>
-                </li>
-                <li>
-                    <button id='launcherRegister' data-toggle="modal" data-target="#register-modal">
-                        Register
-                    </button>
-                </li>
+                {% if app.user %}
+                    <li>
+                        <a id='#'>Profile</a>
+                    </li>
+                    <li>
+                        <a id='#'>Courses</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <button id='launcherLogin' data-toggle="modal" data-target="#login-modal">
+                            Login
+                        </button>
+                    </li>
+                    <li>
+                        <button id='launcherRegister' data-toggle="modal" data-target="#register-modal">
+                            Register
+                        </button>
+                    </li>
+                {% endif %}
+
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -136,6 +147,7 @@
                         <div class="clearfix"></div>
                         <div id='social-icons-conatainer'>
                             <div class='modal-body-left'>
+                                <div id="registerError"></div>
                                 {% include "@FOSUser/Registration/register.html.twig" %}
                             </div>
 
@@ -166,7 +178,6 @@
                     <div class="modal-footer login_modal_footer">
                     </div>
                 </div>
-                launcherRegister
             </div>
         </div>
     {% endblock %}
@@ -176,43 +187,48 @@
     <script src="{{ asset('t/js/vendor/jquery-1.10.2.min.js') }}"></script>
     <script src="{{ asset('t/js/vendor/bootstrap.min.js') }}"></script>
     <script type="text/javascript">
-        /*  $(document).ready(function () {
-         $("#userRegisterss").click(function () {
-         // if user clicks submit no matter you give alert
-         var email = $("#fos_user_registration_form_email").val();
-         var username = $("#fos_user_registration_form_username").val();
-         var pass = $("#fos_user_registration_form_plainPassword_first").val();
-         var cpass = $("#fos_user_registration_form_plainPassword_second").val();
-         $.ajax({
-         url: "{{ path('fos_user_registration_register') }}",
-         // but this time with some data
-         data: {
-         fos_user_registration_form_email: email,
-         fos_user_registration_form_username: username,
-         fos_user_registration_form_plainPassword_first: pass,
-         fos_user_registration_form_plainPassword_second: cpass
-         },
-         type: 'post'
-         }).done(function (data) {
-         // if server responses with 200 status you rewrite same container
-         //  $("#registerForm").html(data);
-         alert(data);
-         /!* here you can put redirect or anything you want. but please, do not handle same urlwith two purposes// one
-         // method cannot do 2 or more actions. KISS - keep it simple stupid, single responsibility.
-         if you want to load register form, then name with one route. if you want to register user, use register action
-         but not same for multiple.
-         so that's why you got missconfused so much with wron approach'*!/
-         // got workflow what you made wrong? according to this code it's just beahving usual if user do not submit data
-         // or enter wrong data, form will show up, but what if user is successful registered ?
-         // you managing with it completely  wrong...
-         }).fail(function () {
-         alert('failed');
-         //handle errors
-         })
-         ;
-         });
+        $(document).ready(function () {
+            $("#userRegisterss").click(function () {
+                var email = $("#fos_user_registration_form_email").val();
+                var username = $("#fos_user_registration_form_username").val();
+                var pass = $("#fos_user_registration_form_plainPassword_first").val();
+                var cpass = $("#fos_user_registration_form_plainPassword_second").val();
+                $.ajax({
+                    url: "{{ path('fos_user_registration_register') }}",
+                    data: {
+                        fos_user_registration_form_email: email,
+                        fos_user_registration_form_username: username,
+                        fos_user_registration_form_plainPassword_first: pass,
+                        fos_user_registration_form_plainPassword_second: cpass
+                    },
+                    type: 'post'
+                }).done(function (data) {
+                    alert(data);
+                    //  $("#registerForm").html(data);
+                }).fail(function () {
+                    alert('failed');
+                });
+            });
+        });
+        /* $('.fos_user_registration_register').submit(function () {
+         var email = $.trim($('#fos_user_registration_form_email').val());
+         var username = $.trim($('#fos_user_registration_form_username').val());
+         var password = $('#fos_user_registration_form_plainPassword_first').val();
+         var cpassword = $('#fos_user_registration_form_plainPassword_second').val();
+         if (email === '') {
+         $("#registerError").html('You did not enter Email');
+         return false;
+         }
 
+         if (username === '') {
+         $("#registerError").html('You did not enter Username');
+         return false;
+         }
 
+         if (password !== cpassword) {
+         $("#registerError").html('Your password did not match');
+         return false;
+         }
          });*/
     </script>
 {% endblock %}
