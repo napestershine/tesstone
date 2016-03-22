@@ -1,13 +1,13 @@
 <?php
 
-namespace WebBundle;
+namespace UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class WebBundle extends Bundle
+class UserBundle extends Bundle
 {
-   /* public function getParent()
+    public function getParent()
     {
         return 'FOSUserBundle';
-    }*/
+    }
 }
