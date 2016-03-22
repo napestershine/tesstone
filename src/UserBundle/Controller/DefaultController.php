@@ -1,5 +1,5 @@
 <?php
-namespace WebBundle\Controller;
+namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
