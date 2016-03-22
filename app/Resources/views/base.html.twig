@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
+
+
+        <link rel="stylesheet" href="{{ asset('t/css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('t/css/font-awesome.min.css') }}"/>
+
+        <link rel="stylesheet" href="{{ asset('t/css/style.css') }}"/>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button id='launcherLogin' data-toggle="modal" data-target="#login-modal">
+                        Login
+                    </button>
+                </li>
+                <li>
+                    <button id='launcherRegister' data-toggle="modal" data-target="#register-modal">
+                        Register
+                    </button>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+{% block body %}
+    {% block login %}
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header login_modal_header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-title" id="myModalLabel">Login</h2>
+                    </div>
+                    <div class="modal-body login-modal">
+                        <p>Stack Overflow is a question and answer site for professional and enthusiast programmers.
+                            It's 100% free, no registration required</p>
+                        <br/>
+
+                        <div class="clearfix"></div>
+                        <div id='social-icons-conatainer'>
+                            <div class='modal-body-left'>
+                                {#{% include ":FOSUserBundle/views/Security:login.html.twig" %}#}
+                            </div>
+
+                            <div class='modal-body-right'>
+                                <div class="modal-social-icons">
+                                    <a href='#' class="btn btn-default facebook"> <i
+                                                class="fa fa-facebook modal-icons"></i>
+                                        Sign In with Facebook </a>
+                                    <a href='#' class="btn btn-default twitter"> <i
+                                                class="fa fa-twitter modal-icons"></i>
+                                        Sign In with Twitter </a>
+                                    <a href='#' class="btn btn-default google"> <i
+                                                class="fa fa-google-plus modal-icons"></i> Sign In with Google </a>
+                                    <a href='#' class="btn btn-default linkedin"> <i
+                                                class="fa fa-linkedin modal-icons"></i>
+                                        Sign In with Linkedin </a>
+                                </div>
+                            </div>
+                            <div id='center-line'> OR</div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group modal-register-btn">
+                            <button id="" class="btn btn-default">Register</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-footer login_modal_footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block register %}
+        <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header login_modal_header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-title" id="myModalLabel">Register</h2>
+                    </div>
+
+                    <div class="modal-body login-modal">
+                        <p>Stack Overflow is a question and answer site for professional and enthusiast programmers.
+                            It's
+                            100% free, no registration required</p>
+                        <br/>
+
+                        <div class="clearfix"></div>
+                        <div id='social-icons-conatainer'>
+                            <div class='modal-body-left'>
+                                <div id="registerResult"></div>
+                                {% include "@FOSUser/Registration/register.html.twig" %}
+                            </div>
+
+                            <div class='modal-body-right'>
+                                <div class="modal-social-icons">
+                                    <a href='#' class="btn btn-default facebook"> <i
+                                                class="fa fa-facebook modal-icons"></i>
+                                        Sign In with Facebook </a>
+                                    <a href='#' class="btn btn-default twitter"> <i
+                                                class="fa fa-twitter modal-icons"></i>
+                                        Sign In with Twitter </a>
+                                    <a href='#' class="btn btn-default google"> <i
+                                                class="fa fa-google-plus modal-icons"></i> Sign In with Google </a>
+                                    <a href='#' class="btn btn-default linkedin"> <i
+                                                class="fa fa-linkedin modal-icons"></i>
+                                        Sign In with Linkedin </a>
+                                </div>
+                            </div>
+                            <div id='center-line'> OR</div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group modal-register-btn">
+                            <button class="btn btn-default"> New User Please Register</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-footer login_modal_footer">
+                    </div>
+                </div>
+                launcherRegister
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('t/js/vendor/modernizr-2.6.2.min.js') }}"></script>
+    <script src="{{ asset('t/js/vendor/jquery-1.10.2.min.js') }}"></script>
+    <script src="{{ asset('t/js/vendor/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        /*  $(document).ready(function () {
+         $("#userRegisterss").click(function () {
+         // if user clicks submit no matter you give alert
+         var email = $("#fos_user_registration_form_email").val();
+         var username = $("#fos_user_registration_form_username").val();
+         var pass = $("#fos_user_registration_form_plainPassword_first").val();
+         var cpass = $("#fos_user_registration_form_plainPassword_second").val();
+         $.ajax({
+         url: "{{ path('fos_user_registration_register') }}",
+         // but this time with some data
+         data: {
+         fos_user_registration_form_email: email,
+         fos_user_registration_form_username: username,
+         fos_user_registration_form_plainPassword_first: pass,
+         fos_user_registration_form_plainPassword_second: cpass
+         },
+         type: 'post'
+         }).done(function (data) {
+         // if server responses with 200 status you rewrite same container
+         //  $("#registerForm").html(data);
+         alert(data);
+         /!* here you can put redirect or anything you want. but please, do not handle same urlwith two purposes// one
+         // method cannot do 2 or more actions. KISS - keep it simple stupid, single responsibility.
+         if you want to load register form, then name with one route. if you want to register user, use register action
+         but not same for multiple.
+         so that's why you got missconfused so much with wron approach'*!/
+         // got workflow what you made wrong? according to this code it's just beahving usual if user do not submit data
+         // or enter wrong data, form will show up, but what if user is successful registered ?
+         // you managing with it completely  wrong...
+         }).fail(function () {
+         alert('failed');
+         //handle errors
+         })
+         ;
+         });
+
+
+         });*/
+    </script>
+{% endblock %}
+</body>
+</html>
