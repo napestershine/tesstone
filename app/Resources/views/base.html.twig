@@ -203,9 +203,9 @@
                     },
                     type: 'post'
                 }).done(function (data) {
-                    alert(data);
+                    alert('success');
                     //  $("#registerForm").html(data);
-                }).fail(function () {
+                }).fail(function (data) {
                     alert('failed');
                 });
             });

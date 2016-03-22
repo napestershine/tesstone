@@ -7,6 +7,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('UserBundle:Default:index.html.twig');
+        $formFactory = $this->get('fos_user.registration.form.factory');
+        $form = $formFactory->createForm();
+        return $this->render('UserBundle:Default:index.html.twig',
+            [
+                'form' => $form->createView()
+            ]);
     }
 }

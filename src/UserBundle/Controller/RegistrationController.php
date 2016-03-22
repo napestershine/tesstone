@@ -96,7 +96,7 @@ class RegistrationController extends Controller
             ));
         }
     }
-// please check this     regis  ter     A           ction
+
     /**
      * Tell the user to check his email provider
      */
