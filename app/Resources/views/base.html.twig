@@ -83,7 +83,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h2 class="modal-title" id="myModalLabel">Login</h2>
                     </div>
-                    <div class="modal-body login-modal">
+                    <div class="modal-body login-modal" id="loginResult">
                         <p>Stack Overflow is a question and answer site for professional and enthusiast programmers.
                             It's 100% free, no registration required</p>
                         <br/>
@@ -201,33 +201,10 @@
                         window.location.reload(1);
                     }, 2000);
                 }).fail(function (data) {
-                    // data.message
-                    //data.status
-//                    var arr = [];
-//                    for (var x in parsed) {
-//                        arr.push(parsed[x]);
-//                    }
-//
                     var newHTML = $.map(data.responseJSON.message, function (value) {
                         return ('<li>' + value + '</li>');
                     });
                     $("#registerError").html(newHTML);
-                });
-            });
-
-            $('#').click(function(e){
-                e.preventDefault();
-                $.ajax({
-                    type        : $('form').attr( 'method' ),
-                    url         : '{{ path("fos_user_security_check") }}',
-                    data        : $('form').serialize(),
-                    dataType    : "json",
-                    success     : function(data, status, object) {
-                        if(data.error) $('.error').html(data.message);
-                    },
-                    error: function(data, status, object){
-                        console.log(data.message);
-                    }
                 });
             });
         });
