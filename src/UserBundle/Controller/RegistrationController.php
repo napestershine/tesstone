@@ -50,7 +50,7 @@ class RegistrationController extends BaseController
         $form = $formFactory->createForm();
         $form->setData($user);
         $form->handleRequest($request);
-        $res = $form->getErrors(true, true);
+        $res = (string)$form->getErrors(true, true);
         if ($form->isValid()) {
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
