@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "728087c41faebb24cf95da9c81bcf753",
-    "content-hash": "5b3314f28dbf3730199682f8e713111b",
+    "hash": "e33a8d6f9ec68fd7258e8fc8995dbd1c",
+    "content-hash": "365a1a00d4e660dcb2353f289ce6ae65",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1161,16 +1161,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.14",
+            "version": "v3.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "cccf975c565ccd835bddc30a8fea5cdfe3357bf1"
+                "reference": "40431d338da7ab4ef5f9edc1ba4551ea1d4d0782"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/cccf975c565ccd835bddc30a8fea5cdfe3357bf1",
-                "reference": "cccf975c565ccd835bddc30a8fea5cdfe3357bf1",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/40431d338da7ab4ef5f9edc1ba4551ea1d4d0782",
+                "reference": "40431d338da7ab4ef5f9edc1ba4551ea1d4d0782",
                 "shasum": ""
             },
             "require": {
@@ -1219,7 +1219,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2016-03-01 10:50:07"
+            "time": "2016-03-22 12:39:08"
         },
         {
             "name": "sensiolabs/security-checker",

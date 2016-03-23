@@ -7,11 +7,8 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
-
-
         <link rel="stylesheet" href="{{ asset('t/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('t/css/font-awesome.min.css') }}"/>
-
         <link rel="stylesheet" href="{{ asset('t/css/style.css') }}"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
@@ -30,7 +27,6 @@
             </button>
             <a class="navbar-brand" href="#">Brand</a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -50,7 +46,6 @@
                     </ul>
                 </li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user %}
                     <li>
@@ -59,6 +54,7 @@
                     <li>
                         <a id='#'>Courses</a>
                     </li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                 {% else %}
                     <li>
                         <button id='launcherLogin' data-toggle="modal" data-target="#login-modal">
@@ -188,7 +184,8 @@
     <script src="{{ asset('t/js/vendor/bootstrap.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#userRegisterss").click(function () {
+            $(".fos_user_registration_register").submit(function (e) {
+                e.preventDefault();
                 var values = {};
                 $('.fos_user_registration_register').serializeArray().forEach(function (field) {
                     values[field.name] = field.value;
@@ -199,32 +196,11 @@
                     type: 'post'
                 }).done(function (data) {
                     console.log(data);
-                    //  $("#registerForm").html(data);
                 }).fail(function (data) {
                     alert('failed');
                 });
             });
         });
-        /* $('.fos_user_registration_register').submit(function () {
-         var email = $.trim($('#fos_user_registration_form_email').val());
-         var username = $.trim($('#fos_user_registration_form_username').val());
-         var password = $('#fos_user_registration_form_plainPassword_first').val();
-         var cpassword = $('#fos_user_registration_form_plainPassword_second').val();
-         if (email === '') {
-         $("#registerError").html('You did not enter Email');
-         return false;
-         }
-
-         if (username === '') {
-         $("#registerError").html('You did not enter Username');
-         return false;
-         }
-
-         if (password !== cpassword) {
-         $("#registerError").html('Your password did not match');
-         return false;
-         }
-         });*/
     </script>
 {% endblock %}
 </body>
