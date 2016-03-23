@@ -134,7 +134,7 @@
                         <h2 class="modal-title" id="myModalLabel">Register</h2>
                     </div>
 
-                    <div class="modal-body login-modal">
+                    <div class="modal-body login-modal" id="regiBody">
                         <p>Stack Overflow is a question and answer site for professional and enthusiast programmers.
                             It's
                             100% free, no registration required</p>
@@ -195,9 +195,12 @@
                     data: values,
                     type: 'post'
                 }).done(function (data) {
-                    console.log(data);
+                    $("#regiBody").html("<h3>You are successfully registered.</h3>");
+                    setTimeout(function () {
+                        window.location.reload(1);
+                    }, 2000);
                 }).fail(function (data) {
-                    alert('failed');
+                    $("#registerError").html(data);
                 });
             });
         });
