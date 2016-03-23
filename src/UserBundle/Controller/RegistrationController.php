@@ -47,12 +47,10 @@ class RegistrationController extends BaseController
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
-
         $form = $formFactory->createForm();
         $form->setData($user);
-
         $form->handleRequest($request);
-
+        $res = $form->getErrors(true, true);
         if ($form->isValid()) {
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
@@ -75,14 +73,9 @@ class RegistrationController extends BaseController
 
             return $response;
         } elseif ($request->isXmlHttpRequest()) {
-            return new JsonResponse('Invalid form', Response::HTTP_BAD_REQUEST);
+            return new JsonResponse($res, Response::HTTP_BAD_REQUEST);
         }
 
-        return $this->render(
-            'FOSUserBundle:Registration:register.html.twig',
-            array(
-                'form' => $form->createView(),
-            )
-        );
+        return $this->render('FOSUserBundle:Registration:register.html.twig', array('form' => $form->createView()));
     }
 }
