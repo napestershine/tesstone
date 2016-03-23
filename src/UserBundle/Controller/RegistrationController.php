@@ -50,6 +50,7 @@ class RegistrationController extends BaseController
         $form = $formFactory->createForm();
         $form->setData($user);
         $form->handleRequest($request);
+        $res = (string)$form->getErrors(true, true);
         if ($form->isValid()) {
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
@@ -72,7 +73,6 @@ class RegistrationController extends BaseController
 
             return $response;
         } elseif ($request->isXmlHttpRequest()) {
-            $res = $form->getErrors(true, true);
             return new JsonResponse($res, Response::HTTP_BAD_REQUEST);
         }
 
