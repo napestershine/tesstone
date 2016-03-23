@@ -73,7 +73,14 @@ class RegistrationController extends BaseController
 
             return $response;
         } elseif ($request->isXmlHttpRequest()) {
-            return new JsonResponse($res, Response::HTTP_BAD_REQUEST);
+            // here would need bing event to extract errors (using transformer)
+            // sf has normaliser, serializer, tran
+            //sformer and other stuff related with core
+            // it uses I guess kernel binds
+            // anyway, any other problmes? not for now as I will start working on login modal now :Dokay gl
+            $errors = array_filter(explode("\n", $res->__toString()));
+            $res = ['response'=> 'failed', 'message' => $errors];
+            return new JsonResponse($res, Response::HTTP_UNAUTHORIZED);
         }
 
         return $this->render('FOSUserBundle:Registration:register.html.twig', array('form' => $form->createView()));

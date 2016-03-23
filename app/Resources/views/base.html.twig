@@ -83,7 +83,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h2 class="modal-title" id="myModalLabel">Login</h2>
                     </div>
-                    <div class="modal-body login-modal">
+                    <div class="modal-body login-modal" id="loginResult">
                         <p>Stack Overflow is a question and answer site for professional and enthusiast programmers.
                             It's 100% free, no registration required</p>
                         <br/>
@@ -91,7 +91,8 @@
                         <div class="clearfix"></div>
                         <div id='social-icons-conatainer'>
                             <div class='modal-body-left'>
-                                {#{% include ":FOSUserBundle/views/Security:login.html.twig" %}#}
+                                <div id="loginError"></div>
+                                {% include "@FOSUser/Security/login.html.twig" %}
                             </div>
 
                             <div class='modal-body-right'>
@@ -134,7 +135,7 @@
                         <h2 class="modal-title" id="myModalLabel">Register</h2>
                     </div>
 
-                    <div class="modal-body login-modal">
+                    <div class="modal-body login-modal" id="regiBody">
                         <p>Stack Overflow is a question and answer site for professional and enthusiast programmers.
                             It's
                             100% free, no registration required</p>
@@ -195,9 +196,15 @@
                     data: values,
                     type: 'post'
                 }).done(function (data) {
-                    console.log(data);
+                    $("#regiBody").html("<h3>You are successfully registered.</h3>");
+                    setTimeout(function () {
+                        window.location.reload(1);
+                    }, 2000);
                 }).fail(function (data) {
-                    alert('failed');
+                    var newHTML = $.map(data.responseJSON.message, function (value) {
+                        return ('<li>' + value + '</li>');
+                    });
+                    $("#registerError").html(newHTML);
                 });
             });
         });
