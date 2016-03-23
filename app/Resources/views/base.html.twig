@@ -189,21 +189,16 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#userRegisterss").click(function () {
-                var email = $("#fos_user_registration_form_email").val();
-                var username = $("#fos_user_registration_form_username").val();
-                var pass = $("#fos_user_registration_form_plainPassword_first").val();
-                var cpass = $("#fos_user_registration_form_plainPassword_second").val();
+                var values = {};
+                $('.fos_user_registration_register').serializeArray().forEach(function (field) {
+                    values[field.name] = field.value;
+                });
                 $.ajax({
                     url: "{{ path('fos_user_registration_register') }}",
-                    data: {
-                        fos_user_registration_form_email: email,
-                        fos_user_registration_form_username: username,
-                        fos_user_registration_form_plainPassword_first: pass,
-                        fos_user_registration_form_plainPassword_second: cpass
-                    },
+                    data: values,
                     type: 'post'
                 }).done(function (data) {
-                    alert('success');
+                    console.log(data);
                     //  $("#registerForm").html(data);
                 }).fail(function (data) {
                     alert('failed');
