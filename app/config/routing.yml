@@ -19,10 +19,10 @@ hwi_oauth_redirect:
     prefix:   /login
 
 facebook_login:
-    pattern: /login/check-facebook
+    path: /login/check-facebook
 
 google_login:
-    pattern: /login/check-google
+    path: /login/check-google
 
 app:
     resource: "@AppBundle/Controller/"
